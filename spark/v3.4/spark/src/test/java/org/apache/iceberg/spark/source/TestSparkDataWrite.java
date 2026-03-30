@@ -428,10 +428,6 @@ public class TestSparkDataWrite {
 
   @TestTemplate
   public void testWriteProjection() {
-    assumeThat(spark.version())
-        .as("Not supported in Spark 3; analysis requires all columns are present")
-        .startsWith("2");
-
     File parent = temp.resolve(format.toString()).toFile();
     File location = new File(parent, "test");
     String targetLocation = locationWithBranch(location);
@@ -465,10 +461,6 @@ public class TestSparkDataWrite {
 
   @TestTemplate
   public void testWriteProjectionWithMiddle() {
-    assumeThat(spark.version())
-        .as("Not supported in Spark 3; analysis requires all columns are present")
-        .startsWith("2");
-
     File parent = temp.resolve(format.toString()).toFile();
     File location = new File(parent, "test");
     String targetLocation = locationWithBranch(location);
