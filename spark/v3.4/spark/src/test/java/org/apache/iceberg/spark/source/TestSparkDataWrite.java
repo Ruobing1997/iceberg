@@ -22,6 +22,7 @@ import static org.apache.iceberg.TableProperties.SPARK_WRITE_PARTITIONED_FANOUT_
 import static org.apache.iceberg.types.Types.NestedField.optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
@@ -427,6 +428,10 @@ public class TestSparkDataWrite {
 
   @TestTemplate
   public void testWriteProjection() {
+    assumeThat(spark.version())
+        .as("Not supported in Spark 3; analysis requires all columns are present")
+        .startsWith("2");
+
     File parent = temp.resolve(format.toString()).toFile();
     File location = new File(parent, "test");
     String targetLocation = locationWithBranch(location);
@@ -460,6 +465,10 @@ public class TestSparkDataWrite {
 
   @TestTemplate
   public void testWriteProjectionWithMiddle() {
+    assumeThat(spark.version())
+        .as("Not supported in Spark 3; analysis requires all columns are present")
+        .startsWith("2");
+
     File parent = temp.resolve(format.toString()).toFile();
     File location = new File(parent, "test");
     String targetLocation = locationWithBranch(location);
