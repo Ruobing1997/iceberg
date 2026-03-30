@@ -22,7 +22,6 @@ import static org.apache.iceberg.TableProperties.SPARK_WRITE_PARTITIONED_FANOUT_
 import static org.apache.iceberg.types.Types.NestedField.optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assumptions.assumeThat;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
